@@ -1,19 +1,18 @@
 
-import { hive } from "../../models";
-export const  createHive = async(req, res) =>{
-    try{
+import { hive } from "../models/hiveModel";
+  export const  createHive = async(req, res) =>{
+    //try{
       let Hive = req.body;
-      
-      let newHive =   await hive.create(Hive);
+      let newHive = await hive.create(Hive);
         
         console.log(newHive);
         res.status(201).json(newHive);
-    }catch(error){
-      res.status(500).json({ error: "Internal server error" });
-    }
-     
-  
+    //}catch(error){
+      //res.status(500).json({ error: "Internal server error" });
+    //}
   };
+  
+  
 //GET ALL CASES
 export const getAll = async (req, res) => {
   try {

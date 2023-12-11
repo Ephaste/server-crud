@@ -2,7 +2,7 @@
 import express  from "express";
 const hiveRouter = express.Router();
 
-import { createHive, getAllHives, getHiveById, updateHive} from "../hive/hiveCrud";
+import { createHive, getAll, getbyId, updateHive,deleteHiveById} from "../hive/hiveCrud";
 /*
  * @swagger
  * components:
@@ -131,12 +131,12 @@ import { createHive, getAllHives, getHiveById, updateHive} from "../hive/hiveCru
  *         description: The contact was not found
  */
 //usersRouter.use(verifyToken);
-hiveRouter.get("/getAll", getAllHives);
+hiveRouter.get("/getAll", getAll);
 hiveRouter.post("/create",createHive);
-hiveRouter.delete("/:id",removeHive);
+hiveRouter.delete("/:id",deleteHiveById);
 // studentsRouter.put("/:id",putData);
- contactsRouter.get("/getById/:id", getHiveById);
- hiveRouter.patch("/:id",UpdateHive);
+ hiveRouter.get("/getById/:id", getbyId);
+ hiveRouter.patch("/:id",updateHive);
 
 export default hiveRouter;
               

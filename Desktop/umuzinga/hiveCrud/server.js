@@ -1,12 +1,12 @@
 import  express  from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import mainRouter from "./src/routes";
 
 ///import "dotenv/config";
 import dotenv from "dotenv"
 dotenv.config();
 import mongoose from "mongoose";
-import usersRouter from "./src/routes";
 import morgan from "morgan";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
@@ -16,6 +16,7 @@ const app =express();
 app.use(bodyParser.json());
 app.use(cors())
 app.use(morgan("dev"))
+app.use('/api/v1',mainRouter);
 
 
 
@@ -56,15 +57,7 @@ app.all('*', (req, res, next) => {
   if (req.originalUrl.startsWith('/api-docs')) {
     next(); // Allow requests to /api-docs to proceed
   }
-  // else {
-  //   res.status(404).json({
-  //     status: 'fail',
-  //     message: `Can't find the ${req.originalUrl} on this server!`
-  //   });
-  // }
-  // const err= new Error(`Can't find the ${req.originalUrl} on this server!`);
-  // err.status = 'fail';
-  // err.statusCode = 404;
+  
 
   next(new appError(`Can't find the ${req.originalUrl} on this server!`, 404));
 });
